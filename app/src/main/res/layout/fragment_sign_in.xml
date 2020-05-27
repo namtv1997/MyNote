@@ -71,6 +71,17 @@
                 app:layout_constraintTop_toBottomOf="@id/tvLabelPassword" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvlabelError"
+                style="@style/TextContentNormal"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textColor="@color/red_bright"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/error_login"
+                app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/btnSignUp"
                 style="@style/ButtonYellowRound"
                 android:layout_marginTop="@dimen/spacing_huge"
@@ -80,11 +91,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edtPassword" />
 
-            <com.google.android.material.button.MaterialButton
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/btnForgotPassword"
                 style="@style/ButtonBorderless"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/spacing_normal1"
+                android:layout_margin="@dimen/spacing_normal1"
                 android:text="@string/button_forgot_password"
                 android:textAllCaps="false"
                 android:textColor="@color/blue_dark"
@@ -106,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/label_dont_have_account" />
 
-                <com.google.android.material.button.MaterialButton
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/btnRegister"
                     style="@style/ButtonBorderless"
                     android:text="@string/button_sign_up_now"

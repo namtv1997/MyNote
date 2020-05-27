@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1060373294478",
+    "firebase_url": "https://my-note-7c098.firebaseio.com",
+    "project_id": "my-note-7c098",
+    "storage_bucket": "my-note-7c098.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060373294478:android:31c0bd1dea3edeb7d288df",
+        "android_client_info": {
+          "package_name": "com.henrynam.MyNote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060373294478-0da6ceqi8g4fg6au83fr71eud6uq4nio.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.henrynam.MyNote",
+            "certificate_hash": "410323903d80f3afb21eafcbb7dd294b3ba8d479"
+          }
+        },
+        {
+          "client_id": "1060373294478-kjauddhg4snpk5b5qr93nfhf7i1amgkb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdWegKCOKnhxrE-yKv1YHM8JjzAkMgVK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060373294478-kjauddhg4snpk5b5qr93nfhf7i1amgkb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

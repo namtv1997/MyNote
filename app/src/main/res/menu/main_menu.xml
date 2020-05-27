@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/title_logout"/>
+
+    <item
+        android:id="@+id/ic_create"
+        android:icon="@drawable/ic_create"
+        android:title="@string/title_add_node"/>
+</menu>

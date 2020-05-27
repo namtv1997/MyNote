@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/label_have_account" />
 
-                <com.google.android.material.button.MaterialButton
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/btnLogin"
                     style="@style/ButtonBorderless"
                     android:text="@string/button_login_now"

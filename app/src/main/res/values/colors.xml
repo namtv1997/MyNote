@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/white</color>
-    <color name="colorPrimaryDark">@color/white</color>
+    <color name="colorPrimary">@color/blue_fb_light</color>
+    <color name="colorPrimaryDark">@color/blue_fb_light</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="white">#ffffff</color>
@@ -19,7 +19,7 @@
     <color name="blue_dark">#4A90E2</color>
 
     <color name="blue_fb_bright">#3b5998</color>
-    <color name="blue_fb_light">#486EBE</color>
+    <color name="blue_fb_light">#4FEAE2</color>
 
     <color name="blue_super_light">#F9FBFF</color>
 
