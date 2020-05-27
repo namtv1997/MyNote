@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorPrimaryDark">@color/white</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00FFCC00</color>
+    <color name="trans_white">#00FFFFFF</color>
+
+    <color name="gray_30">#D8D8D8</color>
+    <color name="gray_60">#4A4A4A</color>
+    <color name="gray_50">#888888</color>
+    <color name="gray_trans">#59D8D8D8</color>
+    <color name="gray_trans_30">#59D8D8D8</color>
+    <color name="gray_trans_80">#CDD8D8D8</color>
+    <color name="gray_light">#e4e4e6</color>
+
+    <color name="blue_dark">#4A90E2</color>
+
+    <color name="blue_fb_bright">#3b5998</color>
+    <color name="blue_fb_light">#486EBE</color>
+
+    <color name="blue_super_light">#F9FBFF</color>
+
+    <color name="black">#000000</color>
+
+    <color name="navy_blue_dark">#001A39</color>
+    <color name="navy_blue_bright">#013372</color>
+    <color name="navy_blue_light">#808d9d</color>
+    <color name="navy_blue_dark_gradient">#BF001A39</color>
+    <color name="navy_blue_light_gradient">#B3001A39</color>
+    <color name="navy_blue_start_gradient">#00001A39</color>
+
+    <color name="green_bright">#2BBA56</color>
+
+    <color name="yellow_bright">#F8BF63</color>
+    <color name="yellow_light">#F5CE55</color>
+
+    <!--color text 'sign out' on personal-->
+    <color name="pink_bright">#FF1B37</color>
+    <color name="pink_light">#FC8998</color>
+    <!--color background alert verify account on personal-->
+    <color name="pink_light_2">#FCE7EA</color>
+
+    <color name="red_bright">#FA0321</color>
+    <color name="red_light">#D0021B</color>
+</resources>

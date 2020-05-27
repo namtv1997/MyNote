@@ -1,0 +1,123 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.henrynam.mynote.presentation.authenication.signin.SignInViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.henrynam.mynote.presentation.authenication.signin.SignInFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/spacing_small"
+            android:paddingTop="@dimen/spacing_small"
+            android:paddingEnd="@dimen/spacing_small">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvLbSignIn"
+                style="@style/TextTitleLarge"
+                android:layout_width="match_parent"
+                android:text="@string/title_login_account"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvLbNameApp"
+                style="@style/TextTitleLarge"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/spacing_huge"
+                android:text="@string/app_name"
+                android:textSize="@dimen/material_text_name_app"
+                app:layout_constraintTop_toBottomOf="@id/tvLbSignIn" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvlabelEmail"
+                style="@style/TextTitleNormal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/label_email"
+                app:layout_constraintTop_toBottomOf="@id/tvLbNameApp" />
+
+            <com.henrynam.mynote.widget.EditTextSingleLine
+                android:id="@+id/edtAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hint="@string/hint_email"
+                app:inputType="textEmailAddress"
+                app:layout_constraintTop_toBottomOf="@id/tvlabelEmail" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvLabelPassword"
+                style="@style/TextTitleNormal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/label_password"
+                app:layout_constraintTop_toBottomOf="@id/edtAccount" />
+
+            <com.henrynam.mynote.widget.EditTextSingleLine
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hint="@string/hint_password"
+                app:inputType="textPassword"
+                app:layout_constraintTop_toBottomOf="@id/tvLabelPassword" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/btnSignUp"
+                style="@style/ButtonYellowRound"
+                android:layout_marginTop="@dimen/spacing_huge"
+                android:gravity="center"
+                android:text="@string/button_login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnForgotPassword"
+                style="@style/ButtonBorderless"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_normal1"
+                android:text="@string/button_forgot_password"
+                android:textAllCaps="false"
+                android:textColor="@color/blue_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/height_180"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnSignUp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_dont_have_account" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRegister"
+                    style="@style/ButtonBorderless"
+                    android:text="@string/button_sign_up_now"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue_dark"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
+
+
+

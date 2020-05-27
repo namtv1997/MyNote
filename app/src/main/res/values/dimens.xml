@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="spacing_huge">48.00dp</dimen>
+    <dimen name="spacing_normal1">24.00dp</dimen>
+    <dimen name="spacing_small">16.00dp</dimen>
+    <dimen name="spacing_tiny">8.00dp</dimen>
+
+    <dimen name="border_soft">8.00dp</dimen>
+    <dimen name="border_hard">4.00dp</dimen>
+    <dimen name="border_booking">10.00dp</dimen>
+
+    <dimen name="image_article_height">80.00dp</dimen>
+    <dimen name="image_article_width">120.00dp</dimen>
+
+    <dimen name="view_height">4.00dp</dimen>
+
+    <dimen name="material_text_menu">14.00sp</dimen>
+    <dimen name="material_text_subhead">16.00sp</dimen>
+    <dimen name="material_text_title">20.00sp</dimen>
+    <dimen name="material_text_body3">10.00sp</dimen>
+    <dimen name="material_text_extra_title">18.00sp</dimen>
+    <dimen name="material_text_name_app">45.00sp</dimen>
+
+    <dimen name="margin_normal">16.00dp</dimen>
+    <dimen name="margin_small">8.00dp</dimen>
+    <dimen name="margin_large">32.00dp</dimen>
+    <dimen name="spacing_normal">8.00dp</dimen>
+    <dimen name="spacing_micro">4.00dp</dimen>
+    <dimen name="spend_management_fab_bottom">20.00dp</dimen>
+
+    <dimen name="divider">1.00dp</dimen>
+    <dimen name="button_height">50.00dp</dimen>
+    <dimen name="button_width">180.00dp</dimen>
+    <dimen name="border_round">300.00dp</dimen>
+
+    <dimen name="height_180">180.00dp</dimen>
+    <dimen name="height_view">1.00dp</dimen>
+</resources>

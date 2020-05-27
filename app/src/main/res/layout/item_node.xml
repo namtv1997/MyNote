@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_tiny"
+    android:background="@drawable/bg_item_node">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvTitle"
+        style="@style/TextTitleNormal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/spacing_tiny"
+        android:paddingLeft="@dimen/spacing_tiny"
+        android:paddingEnd="@dimen/spacing_tiny"
+        android:paddingTop="@dimen/spacing_normal"
+        android:paddingBottom="@dimen/spacing_normal"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry"
+        tools:text="Dịch vụ mới" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvContent"
+        style="@style/TextContentNormal"
+        android:layout_width="match_parent"
+        android:paddingStart="@dimen/spacing_tiny"
+        android:paddingLeft="@dimen/spacing_tiny"
+        android:paddingEnd="@dimen/spacing_tiny"
+        android:paddingTop="@dimen/spacing_normal"
+        android:paddingBottom="@dimen/spacing_normal"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="Chương trình áp dụng cho các người dân vay…"
+        tools:ignore="RtlSymmetry" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvDate"
+        style="@style/TextContentNormal"
+        android:layout_width="match_parent"
+        android:paddingStart="@dimen/spacing_tiny"
+        android:paddingLeft="@dimen/spacing_tiny"
+        android:paddingTop="@dimen/spacing_normal"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingEnd="@dimen/spacing_tiny"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/tvContent"
+        tools:text="13:56 - 22/03/2020"
+        tools:ignore="RtlSymmetry" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
