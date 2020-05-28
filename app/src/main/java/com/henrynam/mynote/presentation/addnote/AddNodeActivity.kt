@@ -2,6 +2,7 @@ package com.henrynam.mynote.presentation.addnote
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -22,6 +23,7 @@ class AddNodeActivity : BaseActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: ActivityAddNodeBinding
     private lateinit var auth: FirebaseAuth
+    private var isEditNote: Boolean = false
 
     private val dbAuthors = FirebaseDatabase.getInstance().getReference(NODE_AUTHORS)
 
@@ -37,10 +39,16 @@ class AddNodeActivity : BaseActivity() {
         auth = FirebaseAuth.getInstance()
 
         if (intent.extras != null) {
-
-           val data: Note = intent.getParcelableExtra("data")
+            val data: Note = intent.getParcelableExtra("data")
             binding.edtTitle.setText(data.title.toString())
             binding.edtDescription.setText(data.description.toString())
+            binding.tvTitleToolbar.text = "Edit Note"
+            binding.ivLeft.setImageResource(R.drawable.ic_delete)
+            isEditNote = true
+        } else {
+            binding.tvTitleToolbar.text = "Add Note"
+            binding.ivLeft.setImageResource(R.drawable.ic_cancel)
+            isEditNote = false
         }
 
         binding.ivLeft.setOnClickListener {
@@ -52,25 +60,39 @@ class AddNodeActivity : BaseActivity() {
         binding.tvTime.text = "Đã chỉnh sửa  $formattedDate"
 
         binding.tvDone.setOnClickListener {
-            val title = binding.edtTitle.text.toString()
-            val description = binding.edtDescription.text.toString()
+            if (!isEditNote) {
+                val title = binding.edtTitle.text.toString()
+                val description = binding.edtDescription.text.toString()
 
-            if (TextUtils.isEmpty(title) && TextUtils.isEmpty(description)) {
-                return@setOnClickListener
+                if (TextUtils.isEmpty(title) && TextUtils.isEmpty(description)) {
+                    return@setOnClickListener
+                }
+
+                val note = Note()
+                note.title = title
+                note.description = description
+                note.createdAt = formattedDate
+
+                addNote(note)
+            } else {
+                finish()
             }
+        }
 
-            val note = Note()
-            note.title = title
-            note.description = description
-            note.createdAt = formattedDate
 
-            addNote(note)
+        binding.ivLeft.setOnClickListener {
+            if (!isEditNote) {
+                finish()
+            } else {
+
+            }
         }
 
     }
 
     private fun addNote(note: Note) {
-        dbAuthors.child(auth.currentUser?.uid.toString()).child(getString(R.string.note_list)).child(Calendar.getInstance().timeInMillis.toString()).setValue(note)
+        dbAuthors.child(auth.currentUser?.uid.toString()).child(getString(R.string.note_list))
+            .child(Calendar.getInstance().timeInMillis.toString()).setValue(note)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     finish()

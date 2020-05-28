@@ -13,8 +13,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_tiny"
-        android:background="@drawable/bg_item_node">
+        android:layout_margin="@dimen/spacing_micro"
+        android:background="@drawable/bg_note_selector">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTitle"
