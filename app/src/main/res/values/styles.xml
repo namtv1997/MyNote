@@ -84,11 +84,10 @@
     </style>
 
     <style name="EditTextNoUnderLine" parent="EditTextStyle">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">right</item>
         <item name="android:paddingEnd">@dimen/spacing_small</item>
-        <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
         <item name="android:textColor">@color/navy_blue_dark</item>
         <item name="android:background">@null</item>

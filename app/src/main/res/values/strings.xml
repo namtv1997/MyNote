@@ -30,10 +30,13 @@
 
     <string name="hint_password">********</string>
     <string name="hint_email">Please input your email</string>
+    <string name="hint_description">Ghi chú</string>
+    <string name="hint_title">Tiêu đề</string>
 
     <string name="error_login">Tài khoản hoặc mật khẩu không đúng vui lòng thử lại</string>
     <string name="error_not_enough_email_pass">Vui lòng không để trống </string>
     <string name="error_not_enough_character">Mật khẩu phải nhiều hơn 6 kí tự</string>
     <string name="error_not_invalid_email">Định dạng Email không đúng</string>
+    <string name="note_list">noteList</string>
 
 </resources>

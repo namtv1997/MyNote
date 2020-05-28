@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.henrynam.mynote.di.viewmodel.ViewModelFactory
 import com.henrynam.mynote.di.viewmodel.ViewModelKey
+import com.henrynam.mynote.presentation.addnote.AddNodeViewModel
 import com.henrynam.mynote.presentation.authenication.AuthenticationViewModel
 import com.henrynam.mynote.presentation.authenication.forgotpass.ForgotPasswordViewModel
 import com.henrynam.mynote.presentation.authenication.signin.SignInViewModel
@@ -29,6 +30,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(AuthenticationViewModel::class)
     abstract fun authenticationViewModel(authenticationViewModel: AuthenticationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddNodeViewModel::class)
+    abstract fun addNodeViewModel(AddNodeViewModel: AddNodeViewModel): ViewModel
 
     @Binds
     @IntoMap

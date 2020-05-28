@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.addnote.AddNodeActivity"></activity>
+        <activity android:name=".presentation.addnote.AddNodeActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".presentation.main.MainActivity" />
         <activity android:name=".presentation.authenication.AuthenticationActivity">
             <intent-filter>

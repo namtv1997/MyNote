@@ -38,8 +38,7 @@ class AuthenticationActivity : BaseActivity() {
         auth = FirebaseAuth.getInstance()
 
         if (auth.currentUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, MainActivity::class.java))
         }else{
             switchFragment(SignInFragment())
         }
@@ -50,14 +49,14 @@ class AuthenticationActivity : BaseActivity() {
             val fragment: Fragment? = supportFragmentManager.findFragmentById(R.id.frameContent)
             if (fragment is SignInFragment) {
                 super.onBackPressed()
-                exitProcess(0)
+                finishAffinity()
             } else {
                 val nameClass: String = fragment?.javaClass!!.name
                 supportFragmentManager.popBackStack(nameClass, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             }
         } catch (e: Exception) {
             print(e.printStackTrace())
-            exitProcess(0)
+            finishAffinity()
         }
     }
 }

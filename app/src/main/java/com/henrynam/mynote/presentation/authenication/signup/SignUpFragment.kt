@@ -79,8 +79,7 @@ class SignUpFragment : BaseFragment() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity!!) { task ->
                     if (task.isSuccessful) {
-                        val intent = Intent(activity, MainActivity::class.java)
-                        startActivity(intent)
+                        startActivity(Intent(activity, MainActivity::class.java))
                         Toast.makeText(activity, R.string.label_register_success, Toast.LENGTH_LONG).show()
                     }
                 }
