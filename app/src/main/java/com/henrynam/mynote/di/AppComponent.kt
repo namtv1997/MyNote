@@ -1,10 +1,7 @@
 package com.henrynam.mynote.di
 
 import com.henrynam.mynote.MainApplication
-import com.henrynam.mynote.di.module.ActivityModule
-import com.henrynam.mynote.di.module.AppModule
-import com.henrynam.mynote.di.module.FragmentModule
-import com.henrynam.mynote.di.module.ViewModelModule
+import com.henrynam.mynote.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

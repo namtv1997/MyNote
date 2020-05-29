@@ -44,6 +44,7 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.app_name)
         auth = FirebaseAuth.getInstance()
+        dbAuthors.keepSynced(true)
         initAdapters()
 
         fetchAuthors()

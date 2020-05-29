@@ -39,7 +39,7 @@ class AddNodeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_node)
         binding.viewModel = viewModel
-
+        dbAuthors.keepSynced(true)
         auth = FirebaseAuth.getInstance()
 
         if (intent.extras != null) {
@@ -109,6 +109,7 @@ class AddNodeActivity : BaseActivity() {
                     finish()
                 }
             }
+        finish()
     }
 
     private fun updateNote(note: Note) {
@@ -119,6 +120,7 @@ class AddNodeActivity : BaseActivity() {
                     finish()
                 }
             }
+        finish()
     }
 
     private fun deleteNote(note: Note) {
@@ -131,6 +133,7 @@ class AddNodeActivity : BaseActivity() {
                     finish()
                 }
             }
+        finish()
     }
 
     private fun delete() {
