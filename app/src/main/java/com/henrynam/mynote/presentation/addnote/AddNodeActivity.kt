@@ -145,8 +145,6 @@ class AddNodeActivity : BaseActivity() {
             .child(note.key.toString()).setValue(null)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    val intent = Intent()
-                    setResult(2, intent)
                     finish()
                 }
             }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -46,9 +47,7 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         supportActionBar?.title = getString(R.string.app_name)
         auth = FirebaseAuth.getInstance()
         dbAuthors.keepSynced(true)
-        initAdapters()
 
-        fetchAuthors()
 
         binding.fabMain.setMenuListener(object : FabSpeedDial.MenuListener {
             override fun onPrepareMenu(p0: NavigationMenu?): Boolean {
@@ -75,21 +74,20 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        initAdapters()
+
+       fetchAuthors()
+    }
+
+
     override fun onItemClick(node: Note) {
         val intent = Intent(this, AddNodeActivity::class.java)
         val bundle = Bundle()
         bundle.putParcelable("data", node)
         intent.putExtras(bundle)
         startActivityForResult(intent, 2)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 2) {
-            initAdapters()
-
-            fetchAuthors()
-        }
     }
 
     private fun initAdapters() {
@@ -128,6 +126,8 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         })
 
     }
+
+
 
     private fun logout() {
         MaterialAlertDialogBuilder(this)
