@@ -15,6 +15,7 @@ import com.henrynam.mynote.data.Constants.NODE_AUTHORS
 import com.henrynam.mynote.data.Note
 import com.henrynam.mynote.databinding.ActivityAddNodeBinding
 import com.henrynam.mynote.presentation.base.BaseActivity
+import kotlinx.android.synthetic.main.item_node.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -27,7 +28,9 @@ class AddNodeActivity : BaseActivity() {
     private lateinit var binding: ActivityAddNodeBinding
     private lateinit var auth: FirebaseAuth
     private var isEditNote: Boolean = false
-    private var note: Note? = null
+    private var note = Note()
+
+    private var isClick: Boolean = false
 
     private val dbAuthors = FirebaseDatabase.getInstance().getReference(NODE_AUTHORS)
 
@@ -48,13 +51,16 @@ class AddNodeActivity : BaseActivity() {
             binding.edtTitle.setText(data.title.toString())
             binding.edtDescription.setText(data.description.toString())
             binding.tvTitleToolbar.text = "Edit Note"
-            binding.tvTime.visibility =View.VISIBLE
+            binding.tvTime.visibility = View.VISIBLE
             binding.ivLeft.setImageResource(R.drawable.ic_delete)
             isEditNote = true
+            if (data.isPin) binding.ivPin.setImageResource(R.drawable.ic_pined)
+            else binding.ivPin.setImageResource(R.drawable.ic_pin)
+
         } else {
             binding.tvTitleToolbar.text = "Add Note"
             binding.ivLeft.setImageResource(R.drawable.ic_cancel)
-            binding.tvTime.visibility =View.GONE
+            binding.tvTime.visibility = View.GONE
             isEditNote = false
         }
 
@@ -66,7 +72,7 @@ class AddNodeActivity : BaseActivity() {
         val formattedDate: String = df.format(Calendar.getInstance().time)
         binding.tvTime.text = "Đã chỉnh sửa  $formattedDate"
 
-        binding.tvDone.setOnClickListener {
+        binding.ivDone.setOnClickListener {
             if (!isEditNote) {
                 val title = binding.edtTitle.text.toString()
                 val description = binding.edtDescription.text.toString()
@@ -75,7 +81,6 @@ class AddNodeActivity : BaseActivity() {
                     return@setOnClickListener
                 }
 
-                val note = Note()
                 note.title = title
                 note.key = dbAuthors.push().key
                 note.description = description
@@ -83,12 +88,24 @@ class AddNodeActivity : BaseActivity() {
 
                 addNote(note)
             } else {
-                note?.title = binding.edtTitle.text.toString()
-                note?.description = binding.edtDescription.text.toString()
-                note?.createdAt = formattedDate
+                note.title = binding.edtTitle.text.toString()
+                note.description = binding.edtDescription.text.toString()
+                note.createdAt = formattedDate
 
-                note?.let { it1 -> updateNote(it1) }
+                updateNote(note)
             }
+        }
+
+        binding.ivPin.setOnClickListener {
+            if (isClick) {
+                binding.ivPin.setImageResource(R.drawable.ic_pined)
+                note.isPin = true
+            } else {
+                binding.ivPin.setImageResource(R.drawable.ic_pin)
+                note.isPin = false
+            }
+
+            isClick = !isClick
         }
 
         binding.ivLeft.setOnClickListener {
@@ -143,7 +160,7 @@ class AddNodeActivity : BaseActivity() {
                 dialog.dismiss()
             }
             .setPositiveButton(getString(R.string.label_accept)) { dialog, _ ->
-                note?.let { it1 -> deleteNote(it1) }
+                deleteNote(note)
             }
             .show()
     }

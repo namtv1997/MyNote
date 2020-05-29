@@ -3,6 +3,7 @@ package com.henrynam.mynote.presentation.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -79,7 +80,7 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         val bundle = Bundle()
         bundle.putParcelable("data", node)
         intent.putExtras(bundle)
-        startActivityForResult(intent,2)
+        startActivityForResult(intent, 2)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -118,7 +119,10 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
                         }
                         author?.let { authors.add(it) }
                     }
-                //    adapterNote.setData(authors)
+
+                    if (authors.size > 0)
+                        binding.lnEmpty.visibility = View.GONE
+                    else binding.lnEmpty.visibility = View.VISIBLE
                 }
             }
         })

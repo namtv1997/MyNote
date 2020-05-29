@@ -7,6 +7,7 @@ data class Note (
     var id: Int? = null,
     var title: String? = null,
     var description: String? = null,
+    var isPin: Boolean = false,
     var key: String? = null,
     var createdAt: String? = null
 ):Parcelable {
@@ -14,6 +15,7 @@ data class Note (
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readString(),
         parcel.readString(),
+        parcel.readByte() != 0.toByte(),
         parcel.readString(),
         parcel.readString()
     ) {
@@ -23,6 +25,7 @@ data class Note (
         parcel.writeValue(id)
         parcel.writeString(title)
         parcel.writeString(description)
+        parcel.writeByte(if (isPin) 1 else 0)
         parcel.writeString(key)
         parcel.writeString(createdAt)
     }

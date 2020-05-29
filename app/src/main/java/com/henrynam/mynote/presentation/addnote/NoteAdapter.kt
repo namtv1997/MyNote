@@ -66,6 +66,8 @@ class NoteAdapter(private var notes: MutableList<Note>) :
             if (note.description == "") itemView.tvContent.visibility = View.GONE
             else itemView.tvContent.visibility = View.VISIBLE
 
+            if (note.isPin) itemView.ivMark.visibility = View.VISIBLE
+            else itemView.ivMark.visibility = View.GONE
 
             itemView.tvTitle.text = note.title
             itemView.tvContent.text = note.description
