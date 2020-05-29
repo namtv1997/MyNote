@@ -10,6 +10,7 @@
     <string name="label_password">Password</string>
     <string name="label_email_confirm">Vào mail để xác nhận đổi mật khẩu</string>
     <string name="label_confirm_logout">Bạn có chắc chắn muốn đăng xuất ?</string>
+    <string name="label_confirm_delete_note">Bạn có chắc chắn muốn xóa note này ?</string>
     <string name="label_cancel">Hủy bỏ</string>
     <string name="label_accept">Đồng ý</string>
     <string name="label_done">xong</string>

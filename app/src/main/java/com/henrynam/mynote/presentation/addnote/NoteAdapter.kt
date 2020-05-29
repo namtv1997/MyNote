@@ -41,11 +41,7 @@ class NoteAdapter(private var notes: MutableList<Note>) :
             notes.add(author)
         } else {
             val index = notes.indexOf(author)
-            if (author.isDeleted) {
-                notes.removeAt(index)
-            } else {
-                notes[index] = author
-            }
+            notes[index] = author
         }
         notifyDataSetChanged()
     }

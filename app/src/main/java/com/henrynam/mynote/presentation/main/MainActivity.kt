@@ -30,9 +30,9 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterNote: NoteAdapter
+    private lateinit var auth: FirebaseAuth
 
     private val dbAuthors = FirebaseDatabase.getInstance().getReference(Constants.NODE_AUTHORS)
-    private lateinit var auth: FirebaseAuth
     private val viewModel: MainViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
     }
@@ -78,7 +78,16 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         val bundle = Bundle()
         bundle.putParcelable("data", node)
         intent.putExtras(bundle)
-        startActivity(intent)
+        startActivityForResult(intent,2)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 2) {
+            initAdapters()
+
+            fetchAuthors()
+        }
     }
 
     private fun initAdapters() {
@@ -103,9 +112,12 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
                     val authors = mutableListOf<Note>()
                     for (authorSnapshot in snapshot.children) {
                         val author = authorSnapshot.getValue(Note::class.java)
+                        if (author != null) {
+                            adapterNote.addNote(author)
+                        }
                         author?.let { authors.add(it) }
                     }
-                    adapterNote.setData(authors)
+                //    adapterNote.setData(authors)
                 }
             }
         })
