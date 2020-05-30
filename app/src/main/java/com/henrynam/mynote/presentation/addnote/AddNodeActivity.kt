@@ -15,6 +15,7 @@ import com.henrynam.mynote.data.Constants.NODE_AUTHORS
 import com.henrynam.mynote.data.Note
 import com.henrynam.mynote.databinding.ActivityAddNodeBinding
 import com.henrynam.mynote.presentation.base.BaseActivity
+import com.henrynam.mynote.presentation.main.MainActivity
 import kotlinx.android.synthetic.main.item_node.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -145,7 +146,7 @@ class AddNodeActivity : BaseActivity() {
             .child(note.key.toString()).setValue(null)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    finish()
+                    startActivity(Intent(this,MainActivity::class.java))
                 }
             }
         finish()

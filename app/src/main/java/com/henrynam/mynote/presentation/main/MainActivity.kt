@@ -79,6 +79,9 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         initAdapters()
 
        fetchAuthors()
+
+        if (adapterNote.itemCount ==0 )  binding.lnEmpty.visibility = View.VISIBLE
+        else binding.lnEmpty.visibility = View.GONE
     }
 
 
