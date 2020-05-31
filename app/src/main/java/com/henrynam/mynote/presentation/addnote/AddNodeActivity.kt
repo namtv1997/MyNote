@@ -91,8 +91,6 @@ class AddNodeActivity : BaseActivity() {
             } else {
                 note.title = binding.edtTitle.text.toString()
                 note.description = binding.edtDescription.text.toString()
-                note.createdAt = formattedDate
-
                 updateNote(note)
             }
         }

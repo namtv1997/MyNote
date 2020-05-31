@@ -36,14 +36,9 @@ class NoteAdapter(private var notes: MutableList<Note>) :
         notifyDataSetChanged()
     }
 
-    fun addNote(author: Note) {
-        if (!notes.contains(author)) {
-            notes.add(author)
-        } else {
-            val index = notes.indexOf(author)
-            notes[index] = author
-        }
-        notifyDataSetChanged()
+    fun addNote(position: Int, author: Note) {
+        notes.add(position, author)
+        notifyItemInserted(position)
     }
 
     override fun getItemCount(): Int {

@@ -78,9 +78,10 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         super.onStart()
         initAdapters()
 
-       fetchAuthors()
+        fetchAuthors1()
+        fetchAuthors()
 
-        if (adapterNote.itemCount ==0 )  binding.lnEmpty.visibility = View.VISIBLE
+        if (adapterNote.itemCount == 0) binding.lnEmpty.visibility = View.VISIBLE
         else binding.lnEmpty.visibility = View.GONE
     }
 
@@ -106,7 +107,9 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
     }
 
     private fun fetchAuthors() {
-        val dbNoteChild = dbAuthors.child(auth.currentUser?.uid.toString()).child(getString(R.string.note_list))
+        val dbNoteChild =
+            dbAuthors.child(auth.currentUser?.uid.toString()).child(getString(R.string.note_list))
+                .orderByChild("pin").equalTo(true)
         dbNoteChild.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {}
 
@@ -116,7 +119,7 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
                     for (authorSnapshot in snapshot.children) {
                         val author = authorSnapshot.getValue(Note::class.java)
                         if (author != null) {
-                            adapterNote.addNote(author)
+                            adapterNote.addNote(0, author)
                         }
                         author?.let { authors.add(it) }
                     }
@@ -130,6 +133,31 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
 
     }
 
+    private fun fetchAuthors1() {
+        val dbNoteChild =
+            dbAuthors.child(auth.currentUser?.uid.toString()).child(getString(R.string.note_list))
+                .orderByChild("pin").equalTo(false)
+        dbNoteChild.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {}
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val authors = mutableListOf<Note>()
+                    for (authorSnapshot in snapshot.children) {
+                        val author = authorSnapshot.getValue(Note::class.java)
+
+                        author?.let { authors.add(it) }
+                        adapterNote.setData(authors)
+                    }
+
+                    if (authors.size > 0)
+                        binding.lnEmpty.visibility = View.GONE
+                    else binding.lnEmpty.visibility = View.VISIBLE
+                }
+            }
+        })
+
+    }
 
 
     private fun logout() {
