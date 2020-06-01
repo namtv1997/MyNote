@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.henrynam.mynote.R
 import com.henrynam.mynote.databinding.FragmentSignUpBinding
@@ -28,72 +28,38 @@ class SignUpFragment : BaseFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var binding: FragmentSignUpBinding
-    private lateinit var auth: FirebaseAuth
 
     private val viewModel: SignUpViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up, container, false)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
+        viewModel.registerSuccess.observe(viewLifecycleOwner, Observer {
+            if (it){
+                startActivity(Intent(activity, MainActivity::class.java))
+                Toast.makeText(activity, R.string.label_register_success, Toast.LENGTH_LONG).show()
+            }
 
-        if (auth.currentUser != null) {
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
-        }
+        })
+
+        viewModel.errorMsg.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
+
+        })
 
         binding.btnLogin.setOnClickListener {
             switchFragment(SignInFragment())
         }
 
-        binding.btnSignUp.setOnClickListener {
-            val email: String = binding.edtAccount.getText()
-            val password: String = binding.edtPassword.getText()
-
-            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                Toast.makeText(activity, R.string.error_not_enough_email_pass, Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-            if (password.length < 6) {
-                Toast.makeText(activity, R.string.error_not_enough_character, Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-            if (!isValidEmail(email)){
-                Toast.makeText(activity, R.string.error_not_invalid_email, Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(activity!!) { task ->
-                    if (task.isSuccessful) {
-                        startActivity(Intent(activity, MainActivity::class.java))
-                        Toast.makeText(activity, R.string.label_register_success, Toast.LENGTH_LONG).show()
-                    }
-                }
-        }
-
-    }
-
-   private fun isValidEmail(email: String?): Boolean {
-        if (email != null) {
-            val p: Pattern = Pattern.compile("^[A-Za-z].*?@gmail\\.com$")
-            val m: Matcher = p.matcher(email)
-            return m.find()
-        }
-        return false
     }
 
 }

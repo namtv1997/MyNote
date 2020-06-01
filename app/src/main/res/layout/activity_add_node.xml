@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.henrynam.mynote.presentation.addnote.AddNodeViewModel" />
@@ -43,6 +43,7 @@
                         android:id="@+id/tvTitleToolbar"
                         style="@style/TextTitleLarge"
                         android:layout_width="wrap_content"
+                        android:text="@{viewModel.noteData == null ? @string/label_add_note : @string/label_edit_note}"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:textColor="@color/navy_blue_dark"
@@ -61,7 +62,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_cancel" />
+                        android:src="@{viewModel.noteData == null ? @drawable/ic_cancel :@drawable/ic_delete}"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivPin"
@@ -72,7 +73,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/ivDone"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_pin" />
+                        app:srcCompat="@drawable/ic_pin"
+                        app:changeImagePin="@{viewModel.noteData}"/>
 
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -80,6 +82,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_margin="@dimen/spacing_tiny"
+                        android:onClick="@{() -> viewModel.clickButtonDone()}"
                         android:background="?attr/actionBarItemBackground"
                         app:srcCompat="@drawable/ic_done"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,6 +99,7 @@
             android:id="@+id/edtTitle"
             style="@style/EditTextNoUnderLine"
             android:gravity="start"
+            android:text="@={viewModel.noteData.title}"
             android:hint="@string/hint_title"
             android:padding="@dimen/spacing_tiny"
             android:layout_marginTop="@dimen/spacing_tiny"
@@ -107,6 +111,7 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edtDescription"
             style="@style/EditTextNoUnderLine"
+            android:text="@={viewModel.noteData.description}"
             android:gravity="start"
             android:hint="@string/hint_description"
             android:padding="@dimen/spacing_tiny"
@@ -122,6 +127,8 @@
             android:layout_width="match_parent"
             android:gravity="center"
             android:padding="@dimen/spacing_tiny"
+            android:text="@={viewModel.time}"
+            android:visibility="@{viewModel.noteData == null ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Đã chỉnh sửa 8:42" />
 

@@ -9,66 +9,75 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_micro"
-        android:background="@drawable/bg_note_selector">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivMark"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_mark"
-            app:visible="@{note.pin}" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTitle"
-            style="@style/TextTitleNormal"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:paddingStart="@dimen/spacing_tiny"
-            android:paddingLeft="@dimen/spacing_tiny"
-            android:paddingEnd="@dimen/spacing_normal1"
-            android:paddingRight="@dimen/spacing_normal1"
-            android:text="@{note.title.toString()}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:visible="@{!note.title.empty}"
-            tools:ignore="RtlSymmetry"
-            tools:text="Dịch vụ mới" />
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_micro"
+            android:background="@drawable/bg_note_selector"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvContent"
-            style="@style/TextContentNormal"
-            android:layout_width="match_parent"
-            android:paddingStart="@dimen/spacing_tiny"
-            android:paddingLeft="@dimen/spacing_tiny"
-            android:paddingTop="@dimen/spacing_normal"
-            android:paddingEnd="@dimen/spacing_tiny"
-            android:text="@{note.description.toString()}"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle"
-            app:visible="@{!note.description.empty}"
-            tools:ignore="RtlSymmetry"
-            tools:text="Chương trình áp dụng cho các người dân vay…" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMark"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_mark"
+                app:visible="@{note.pin}" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvDate"
-            style="@style/TextContentNormal"
-            android:layout_width="match_parent"
-            android:paddingStart="@dimen/spacing_tiny"
-            android:paddingLeft="@dimen/spacing_tiny"
-            android:paddingTop="@dimen/spacing_normal"
-            android:paddingEnd="@dimen/spacing_tiny"
-            android:paddingBottom="@dimen/spacing_normal"
-            android:text="@{`Tạo: `+ note.createdAt.toString()}"
-            android:textStyle="italic"
-            app:layout_constraintTop_toBottomOf="@id/tvContent"
-            tools:ignore="RtlSymmetry"
-            tools:text="13:56 - 22/03/2020" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitle"
+                style="@style/TextTitleNormal"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/spacing_tiny"
+                android:paddingLeft="@dimen/spacing_tiny"
+                android:paddingEnd="@dimen/spacing_normal1"
+                android:paddingRight="@dimen/spacing_normal1"
+                android:text="@{note.title.toString()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:visible="@{!note.title.empty}"
+                tools:ignore="RtlSymmetry"
+                tools:text="Dịch vụ mới" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvContent"
+                style="@style/TextContentNormal"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/spacing_tiny"
+                android:paddingLeft="@dimen/spacing_tiny"
+                android:paddingTop="@dimen/spacing_normal"
+                android:paddingEnd="@dimen/spacing_tiny"
+                android:text="@{note.description.toString()}"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                app:visible="@{!note.description.empty}"
+                tools:ignore="RtlSymmetry"
+                tools:text="Chương trình áp dụng cho các người dân vay…" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDate"
+                style="@style/TextContentNormal"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/spacing_tiny"
+                android:paddingLeft="@dimen/spacing_tiny"
+                android:paddingTop="@dimen/spacing_normal"
+                android:paddingEnd="@dimen/spacing_tiny"
+                android:paddingBottom="@dimen/spacing_normal"
+                android:text="@{`Tạo: `+ note.createdAt.toString()}"
+                android:textStyle="italic"
+                app:layout_constraintTop_toBottomOf="@id/tvContent"
+                tools:ignore="RtlSymmetry"
+                tools:text="13:56 - 22/03/2020" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
 
 

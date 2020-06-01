@@ -45,8 +45,6 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.app_name)
         auth = FirebaseAuth.getInstance()
-        dbAuthors.keepSynced(true)
-
 
         binding.fabMain.setMenuListener(object : FabSpeedDial.MenuListener {
             override fun onPrepareMenu(p0: NavigationMenu?): Boolean {
@@ -101,6 +99,7 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         binding.rvNote.apply {
             setHasFixedSize(true)
             layoutManager = object : StaggeredGridLayoutManager(2, VERTICAL) {}
+
             adapter = adapterNote
         }
     }

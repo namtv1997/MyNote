@@ -46,12 +46,14 @@
                 android:text="@string/label_email"
                 app:layout_constraintTop_toBottomOf="@id/tvLbNameApp" />
 
-            <com.henrynam.mynote.widget.EditTextSingleLine
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edtAccount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hint="@string/hint_email"
-                app:inputType="textEmailAddress"
+                style="@style/EditTextSingleLine"
+                android:hint="@string/hint_email"
+                android:text="@={viewModel.email}"
+                android:inputType="textEmailAddress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvlabelEmail" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -62,12 +64,14 @@
                 android:text="@string/label_password"
                 app:layout_constraintTop_toBottomOf="@id/edtAccount" />
 
-            <com.henrynam.mynote.widget.EditTextSingleLine
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hint="@string/hint_password"
-                app:inputType="textPassword"
+                style="@style/EditTextSingleLine"
+                android:hint="@string/hint_password"
+                android:text="@={viewModel.passWord}"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLabelPassword" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -85,6 +89,7 @@
                 android:id="@+id/btnSignUp"
                 style="@style/ButtonYellowRound"
                 android:layout_marginTop="@dimen/spacing_huge"
+                android:onClick="@{() -> viewModel.login()}"
                 android:gravity="center"
                 android:text="@string/button_login"
                 app:layout_constraintEnd_toEndOf="parent"
