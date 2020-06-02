@@ -2,7 +2,6 @@ package com.henrynam.mynote.presentation.authenication.signin
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.FirebaseAuth
-
 import com.henrynam.mynote.R
 import com.henrynam.mynote.databinding.FragmentSignInBinding
 import com.henrynam.mynote.presentation.authenication.forgotpass.ForgotPasswordFragment

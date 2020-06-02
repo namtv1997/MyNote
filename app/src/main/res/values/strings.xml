@@ -14,14 +14,16 @@
     <string name="label_cancel">Hủy bỏ</string>
     <string name="label_accept">Đồng ý</string>
     <string name="label_edit_note">Edit Note</string>
+    <string name="label_empty_note">Ghi chú bạn thêm sẽ xuất hiện tại đây</string>
     <string name="label_add_note">Add Note</string>
-
+    <string name="label_edited">Đã chỉnh sửa</string>
 
     <string name="title_sign_up_account">Đăng ký tài khoản</string>
     <string name="title_login_account">Đăng nhập tài khoản</string>
     <string name="title_forgot_password">Quên mật khẩu</string>
     <string name="title_logout">Đăng xuất</string>
     <string name="title_add_node">Tạo Node</string>
+    <string name="title_search">Tìm kiếm note</string>
 
     <string name="button_login_now">Đăng nhập ngay</string>
     <string name="button_sign_up">Đăng ký</string>
@@ -39,7 +41,7 @@
     <string name="error_not_enough_email_pass">Vui lòng không để trống </string>
     <string name="error_not_enough_character">Mật khẩu phải nhiều hơn 6 kí tự</string>
     <string name="error_not_invalid_email">Định dạng Email không đúng</string>
-    <string name="note_list">noteList</string>
-    <string name="label_empty_note">Ghi chú bạn thêm sẽ xuất hiện tại đây</string>
+    <string name="error_not_enough_title">Không để trống tiêu đề</string>
+
 
 </resources>

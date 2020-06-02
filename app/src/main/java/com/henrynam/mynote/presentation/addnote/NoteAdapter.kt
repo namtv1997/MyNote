@@ -30,11 +30,6 @@ class NoteAdapter(private val notes: MutableList<Note>) : RecyclerView.Adapter<N
         notifyDataSetChanged()
     }
 
-    fun addNote(position: Int, note: Note) {
-        notes.add(position, note)
-        notifyItemInserted(position)
-    }
-
     override fun getItemCount(): Int = notes.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(notes[position])

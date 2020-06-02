@@ -12,6 +12,8 @@
     <dimen name="image_article_height">80.00dp</dimen>
     <dimen name="image_article_width">120.00dp</dimen>
 
+    <dimen name="size_icon_nomal">30.00dp</dimen>
+
     <dimen name="view_height">4.00dp</dimen>
 
     <dimen name="material_text_menu">14.00sp</dimen>

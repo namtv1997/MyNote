@@ -55,8 +55,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivLeft"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/size_icon_nomal"
+                        android:layout_height="@dimen/size_icon_nomal"
                         android:layout_margin="@dimen/spacing_tiny"
                         android:background="?attr/actionBarItemBackground"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,8 +66,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivPin"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/size_icon_nomal"
+                        android:layout_height="@dimen/size_icon_nomal"
                         android:layout_margin="@dimen/spacing_small"
                         android:background="?attr/actionBarItemBackground"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,8 +79,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivDone"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/size_icon_nomal"
+                        android:layout_height="@dimen/size_icon_nomal"
                         android:layout_margin="@dimen/spacing_tiny"
                         android:onClick="@{() -> viewModel.clickButtonDone()}"
                         android:background="?attr/actionBarItemBackground"

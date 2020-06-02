@@ -2,9 +2,10 @@ package com.henrynam.mynote.presentation.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -12,15 +13,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.internal.NavigationMenu
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.henrynam.mynote.R
-import com.henrynam.mynote.data.Constants
 import com.henrynam.mynote.data.Constants.DATA
-import com.henrynam.mynote.data.Constants.NOTE_LIST
-import com.henrynam.mynote.data.Constants.PIN
 import com.henrynam.mynote.data.Note
 import com.henrynam.mynote.databinding.ActivityMainBinding
 import com.henrynam.mynote.presentation.addnote.AddNodeActivity
@@ -80,13 +74,44 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
 
         viewModel.noteList.observe(this, androidx.lifecycle.Observer {
             adapterNote.setData(it)
-            if (it.isNotEmpty())
+            if (it.isNotEmpty()){
                 binding.lnEmpty.visibility = View.GONE
-            else binding.lnEmpty.visibility = View.VISIBLE
+                binding.rvNote.visibility = View.VISIBLE
+            } else {
+                binding.lnEmpty.visibility = View.VISIBLE
+                binding.rvNote.visibility = View.GONE
+            }
         })
 
-        if (adapterNote.itemCount == 0) binding.lnEmpty.visibility = View.VISIBLE
-        else binding.lnEmpty.visibility = View.GONE
+        viewModel.haveData.observe(this, androidx.lifecycle.Observer {
+            if (!it) {
+                binding.lnEmpty.visibility = View.VISIBLE
+                binding.rvNote.visibility = View.GONE
+            }else{
+                binding.lnEmpty.visibility = View.GONE
+                binding.rvNote.visibility = View.VISIBLE
+            }
+        })
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        val search = menu.findItem(R.id.action_search)
+        val searchView = search.actionView as SearchView
+        searchView.queryHint = getString(R.string.title_search)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.searchNotes(query.toString())
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.searchNotes(newText.toString())
+                return true
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
     }
 
 

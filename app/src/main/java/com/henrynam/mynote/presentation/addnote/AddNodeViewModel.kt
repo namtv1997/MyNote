@@ -1,17 +1,13 @@
 package com.henrynam.mynote.presentation.addnote
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.text.TextUtils
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.henrynam.mynote.R
 import com.henrynam.mynote.data.Constants.NOTE_LIST
 import com.henrynam.mynote.data.Note
-import com.henrynam.mynote.presentation.main.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -26,9 +22,9 @@ class AddNodeViewModel @Inject constructor(
     val startMainActivity = MutableLiveData<Boolean>()
     val time = ObservableField<String>()
     val title = ObservableField<String>()
-    val description = ObservableField<String>()
-    val df = SimpleDateFormat("HH:mm - dd/MM/YYYY")
-    val formattedDate: String = df.format(Calendar.getInstance().time)
+    private val description = ObservableField<String>()
+    private val df = SimpleDateFormat("HH:mm - dd/MM/YYYY")
+    private val formattedDate: String = df.format(Calendar.getInstance().time)
     val noteData = ObservableField(Note())
 
     init {
@@ -38,7 +34,7 @@ class AddNodeViewModel @Inject constructor(
         description.set(noteData.get()?.description).toString()
     }
 
-  private fun addNote(note: Note) {
+    private fun addNote(note: Note) {
         dbNotes.child(auth.currentUser?.uid.toString()).child(NOTE_LIST)
             .child(note.key.toString()).setValue(note)
             .addOnCompleteListener {
@@ -62,9 +58,14 @@ class AddNodeViewModel @Inject constructor(
 
     fun clickButtonDone() {
         noteData.get()?.let {
-            if (it.key  == null) it.key = dbNotes.push().key
+            if (it.key == null) it.key = dbNotes.push().key
             it.createdAt = formattedDate
-            addNote(it)
+
+            if (it.title != null) {
+                addNote(it)
+            } else {
+                success.postValue(false)
+            }
         }
     }
 

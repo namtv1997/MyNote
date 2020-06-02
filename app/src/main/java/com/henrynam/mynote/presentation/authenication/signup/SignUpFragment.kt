@@ -2,7 +2,6 @@ package com.henrynam.mynote.presentation.authenication.signup
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.google.firebase.auth.FirebaseAuth
 import com.henrynam.mynote.R
 import com.henrynam.mynote.databinding.FragmentSignUpBinding
 import com.henrynam.mynote.presentation.authenication.signin.SignInFragment
 import com.henrynam.mynote.presentation.base.BaseFragment
 import com.henrynam.mynote.presentation.main.MainActivity
 import com.henrynam.mynote.utils.switchFragment
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+
 import javax.inject.Inject
 
 class SignUpFragment : BaseFragment() {

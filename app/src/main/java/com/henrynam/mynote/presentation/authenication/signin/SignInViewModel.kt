@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.henrynam.mynote.R
-import com.henrynam.mynote.utils.isEmailValid
 import javax.inject.Inject
 
 class SignInViewModel @Inject constructor(private val auth: FirebaseAuth) : ViewModel() {

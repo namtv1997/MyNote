@@ -2,6 +2,7 @@ package com.henrynam.mynote.presentation.addnote
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -13,7 +14,6 @@ import com.henrynam.mynote.databinding.ActivityAddNodeBinding
 import com.henrynam.mynote.presentation.base.BaseActivity
 import com.henrynam.mynote.presentation.main.MainActivity
 import javax.inject.Inject
-
 
 class AddNodeActivity : BaseActivity() {
 
@@ -45,7 +45,11 @@ class AddNodeActivity : BaseActivity() {
         }
 
         viewModel.success.observe(this, androidx.lifecycle.Observer {
-            finish()
+            if (it) {
+                finish()
+            } else {
+                Toast.makeText(this, R.string.error_not_enough_title, Toast.LENGTH_LONG).show()
+            }
         })
 
         viewModel.startMainActivity.observe(this, androidx.lifecycle.Observer {
