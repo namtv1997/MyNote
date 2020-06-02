@@ -77,6 +77,7 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
     override fun onStart() {
         super.onStart()
         initAdapters()
+
         viewModel.noteList.observe(this, androidx.lifecycle.Observer {
             adapterNote.setData(it)
             if (it.isNotEmpty())

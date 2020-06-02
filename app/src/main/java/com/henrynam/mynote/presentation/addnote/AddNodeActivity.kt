@@ -19,10 +19,11 @@ class AddNodeActivity : BaseActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private lateinit var binding: ActivityAddNodeBinding
-    private var isEditNote: Boolean = false
-    private var note = Note()
 
+    private lateinit var binding: ActivityAddNodeBinding
+
+    private var note = Note()
+    private var isEditNote: Boolean = false
     private var isClick: Boolean = false
 
     private val viewModel: AddNodeViewModel by lazy {
