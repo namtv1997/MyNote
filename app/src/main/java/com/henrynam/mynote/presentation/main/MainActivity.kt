@@ -2,6 +2,7 @@ package com.henrynam.mynote.presentation.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -11,9 +12,15 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.internal.NavigationMenu
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.henrynam.mynote.R
 import com.henrynam.mynote.data.Constants
+import com.henrynam.mynote.data.Constants.DATA
+import com.henrynam.mynote.data.Constants.NOTE_LIST
+import com.henrynam.mynote.data.Constants.PIN
 import com.henrynam.mynote.data.Note
 import com.henrynam.mynote.databinding.ActivityMainBinding
 import com.henrynam.mynote.presentation.addnote.AddNodeActivity
@@ -31,9 +38,6 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterNote: NoteAdapter
-    private lateinit var auth: FirebaseAuth
-
-    private val dbAuthors = FirebaseDatabase.getInstance().getReference(Constants.NODE_AUTHORS)
     private val viewModel: MainViewModel by lazy {
         ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
     }
@@ -44,7 +48,6 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         binding.viewModel = viewModel
         setSupportActionBar(toolbar)
         supportActionBar?.title = getString(R.string.app_name)
-        auth = FirebaseAuth.getInstance()
 
         binding.fabMain.setMenuListener(object : FabSpeedDial.MenuListener {
             override fun onPrepareMenu(p0: NavigationMenu?): Boolean {
@@ -74,9 +77,12 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
     override fun onStart() {
         super.onStart()
         initAdapters()
-
-        fetchAuthors1()
-        fetchAuthors()
+        viewModel.noteList.observe(this, androidx.lifecycle.Observer {
+            adapterNote.setData(it)
+            if (it.isNotEmpty())
+                binding.lnEmpty.visibility = View.GONE
+            else binding.lnEmpty.visibility = View.VISIBLE
+        })
 
         if (adapterNote.itemCount == 0) binding.lnEmpty.visibility = View.VISIBLE
         else binding.lnEmpty.visibility = View.GONE
@@ -86,9 +92,9 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
     override fun onItemClick(node: Note) {
         val intent = Intent(this, AddNodeActivity::class.java)
         val bundle = Bundle()
-        bundle.putParcelable("data", node)
+        bundle.putParcelable(DATA, node)
         intent.putExtras(bundle)
-        startActivityForResult(intent, 2)
+        startActivity(intent)
     }
 
     private fun initAdapters() {
@@ -99,64 +105,9 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         binding.rvNote.apply {
             setHasFixedSize(true)
             layoutManager = object : StaggeredGridLayoutManager(2, VERTICAL) {}
-
             adapter = adapterNote
         }
     }
-
-    private fun fetchAuthors() {
-        val dbNoteChild =
-            dbAuthors.child(auth.currentUser?.uid.toString()).child(getString(R.string.note_list))
-                .orderByChild("pin").equalTo(true)
-        dbNoteChild.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {}
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    val authors = mutableListOf<Note>()
-                    for (authorSnapshot in snapshot.children) {
-                        val author = authorSnapshot.getValue(Note::class.java)
-                        if (author != null) {
-                            adapterNote.addNote(0, author)
-                        }
-                        author?.let { authors.add(it) }
-                    }
-
-                    if (authors.size > 0)
-                        binding.lnEmpty.visibility = View.GONE
-                    else binding.lnEmpty.visibility = View.VISIBLE
-                }
-            }
-        })
-
-    }
-
-    private fun fetchAuthors1() {
-        val dbNoteChild =
-            dbAuthors.child(auth.currentUser?.uid.toString()).child(getString(R.string.note_list))
-                .orderByChild("pin").equalTo(false)
-        dbNoteChild.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {}
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    val authors = mutableListOf<Note>()
-                    for (authorSnapshot in snapshot.children) {
-                        val author = authorSnapshot.getValue(Note::class.java)
-
-                        author?.let { authors.add(it) }
-                        adapterNote.setData(authors)
-                    }
-
-                    if (authors.size > 0)
-                        binding.lnEmpty.visibility = View.GONE
-                    else binding.lnEmpty.visibility = View.VISIBLE
-                }
-            }
-        })
-
-    }
-
 
     private fun logout() {
         MaterialAlertDialogBuilder(this)

@@ -7,6 +7,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
+import com.henrynam.mynote.data.Constants
+import com.henrynam.mynote.data.Constants.NOTE_LIST
+import com.henrynam.mynote.data.Constants.PIN
 import com.henrynam.mynote.data.Note
 import javax.inject.Inject
 
@@ -20,39 +23,13 @@ class MainViewModel @Inject constructor(
 
     init {
         dbNotes.keepSynced(true)
-//        loadNotesPined()
-//        loadNotesPin()
+        loadNotesPin()
     }
 
-     fun loadNotesPined() {
-        val dbNoteChild =
-            dbNotes.child(auth.currentUser?.uid.toString())
-                .child("noteList")
-                .orderByChild("pin")
-                .equalTo(true)
-        dbNoteChild.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {}
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    val notes = mutableListOf<Note>()
-                    for (noteSnapshot in snapshot.children) {
-                        val author = noteSnapshot.getValue(Note::class.java)
-                        if (author != null) {
-                            author.let { notes.add(it) }
-                            noteList.postValue(notes)
-                        }
-                    }
-                }
-            }
-        })
-    }
-
-     fun loadNotesPin() {
+   private  fun loadNotesPin() {
         val dbNoteChild = dbNotes.child(auth.currentUser?.uid.toString())
-            .child("noteList")
-            .orderByChild("pin")
-            .equalTo(false)
+            .child(NOTE_LIST)
+            .orderByChild(PIN)
         dbNoteChild.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {}
 
@@ -63,7 +40,9 @@ class MainViewModel @Inject constructor(
                         val author = noteSnapshot.getValue(Note::class.java)
                         if (author != null) {
                             author.let { notes.add(it) }
-                            noteList.postValue(notes)
+                            val sortedList = notes.sortedWith(compareBy({ !it.isPin }, { it.isPin }))
+
+                            noteList.postValue(sortedList)
                         }
                     }
 

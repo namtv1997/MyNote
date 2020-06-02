@@ -2,24 +2,16 @@ package com.henrynam.mynote.presentation.addnote
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.View
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.henrynam.mynote.R
-import com.henrynam.mynote.data.Constants.NODE_AUTHORS
+import com.henrynam.mynote.data.Constants.DATA
 import com.henrynam.mynote.data.Note
 import com.henrynam.mynote.databinding.ActivityAddNodeBinding
 import com.henrynam.mynote.presentation.base.BaseActivity
 import com.henrynam.mynote.presentation.main.MainActivity
-import kotlinx.android.synthetic.main.item_node.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 
@@ -43,7 +35,7 @@ class AddNodeActivity : BaseActivity() {
         binding.viewModel = viewModel
 
         if (intent.extras != null) {
-            val data: Note = intent.getParcelableExtra("data")
+            val data: Note = intent.getParcelableExtra(DATA)
             viewModel.noteData.set(data)
             note = data
             isEditNote = true

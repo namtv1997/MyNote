@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.henrynam.mynote.R
+import com.henrynam.mynote.data.Constants.NOTE_LIST
 import com.henrynam.mynote.data.Note
 import com.henrynam.mynote.presentation.main.MainActivity
 import java.text.SimpleDateFormat
@@ -28,8 +29,6 @@ class AddNodeViewModel @Inject constructor(
     val description = ObservableField<String>()
     val df = SimpleDateFormat("HH:mm - dd/MM/YYYY")
     val formattedDate: String = df.format(Calendar.getInstance().time)
-
-
     val noteData = ObservableField(Note())
 
     init {
@@ -40,7 +39,7 @@ class AddNodeViewModel @Inject constructor(
     }
 
   private fun addNote(note: Note) {
-        dbNotes.child(auth.currentUser?.uid.toString()).child("noteList")
+        dbNotes.child(auth.currentUser?.uid.toString()).child(NOTE_LIST)
             .child(note.key.toString()).setValue(note)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -51,7 +50,7 @@ class AddNodeViewModel @Inject constructor(
     }
 
     fun deleteNote(note: Note) {
-        dbNotes.child(auth.currentUser?.uid.toString()).child("noteList")
+        dbNotes.child(auth.currentUser?.uid.toString()).child(NOTE_LIST)
             .child(note.key.toString()).setValue(null)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
