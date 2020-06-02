@@ -33,6 +33,7 @@ class AuthenticationActivity : BaseActivity() {
 
         if (viewModel.checkLogin()){
             startActivity(Intent(this, MainActivity::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }else{
             switchFragment(SignInFragment())
         }

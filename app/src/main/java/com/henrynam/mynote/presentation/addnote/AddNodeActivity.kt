@@ -50,6 +50,7 @@ class AddNodeActivity : BaseActivity() {
 
         viewModel.startMainActivity.observe(this, androidx.lifecycle.Observer {
             startActivity(Intent(this, MainActivity::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         })
 
         binding.ivLeft.setOnClickListener {
@@ -89,4 +90,10 @@ class AddNodeActivity : BaseActivity() {
             }
             .show()
     }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
 }

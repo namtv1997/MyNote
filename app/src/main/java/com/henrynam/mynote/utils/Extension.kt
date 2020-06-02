@@ -16,6 +16,7 @@ fun isEmailValid(email: String) = Pattern.matches(EMAIL_REGEX, email)
 fun DaggerFragment.switchFragment( fragment: DaggerFragment, replace:Int = R.id.frameContent ){
     val name: String = fragment.javaClass.name
     val ft : FragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
+    ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
     ft.replace(replace, fragment)
     ft.addToBackStack(name)
@@ -25,6 +26,7 @@ fun DaggerFragment.switchFragment( fragment: DaggerFragment, replace:Int = R.id.
 fun DaggerAppCompatActivity.switchFragment(fragment: DaggerFragment, replace:Int = R.id.frameContent ){
     val name: String = fragment.javaClass.name
     val ft : FragmentTransaction = supportFragmentManager.beginTransaction()
+    ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left)
     ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
     ft.replace(replace, fragment)
     ft.addToBackStack(name)

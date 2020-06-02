@@ -46,6 +46,7 @@ class SignUpFragment : BaseFragment() {
         viewModel.registerSuccess.observe(viewLifecycleOwner, Observer {
             if (it){
                 startActivity(Intent(activity, MainActivity::class.java))
+
                 Toast.makeText(activity, R.string.label_register_success, Toast.LENGTH_LONG).show()
             }
 

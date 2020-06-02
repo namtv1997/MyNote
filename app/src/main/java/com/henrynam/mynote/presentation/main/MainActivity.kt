@@ -61,8 +61,8 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
                     }
 
                     R.id.ic_create -> {
-
                         startActivity(Intent(applicationContext, AddNodeActivity::class.java))
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     }
                 }
                 return true
@@ -96,6 +96,7 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
         bundle.putParcelable(DATA, node)
         intent.putExtras(bundle)
         startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     private fun initAdapters() {
@@ -120,6 +121,7 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, AuthenticationActivity::class.java)
                 startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                 finishAffinity()
                 dialog.dismiss()
             }
@@ -128,5 +130,10 @@ class MainActivity : BaseActivity(), NoteAdapter.NoteAdapterListener {
 
     override fun onBackPressed() {
         finishAffinity()
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 }
