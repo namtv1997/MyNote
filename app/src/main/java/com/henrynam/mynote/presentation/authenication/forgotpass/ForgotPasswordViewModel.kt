@@ -22,6 +22,7 @@ class ForgotPasswordViewModel @Inject constructor(private val auth: FirebaseAuth
                         success.postValue(true)
                     }
                 }
+
         }
     }
 

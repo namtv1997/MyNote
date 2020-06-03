@@ -21,7 +21,7 @@ class SignInViewModel @Inject constructor(private val auth: FirebaseAuth) : View
                     if (task.isSuccessful) {
                         loginSuccess.postValue(true)
                     }else{
-                        loginSuccess.postValue(true)
+                        loginSuccess.postValue(false)
                     }
                 }
 
